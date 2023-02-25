@@ -3,9 +3,11 @@ import suffix from "./generator/suffix.json";
 import flavors from "./generator/flavors.json";
 
 export const generateName = (useCrayola: boolean): string => {
-  return capitalize(
+  let result = capitalize(
     `${getRandom(prefix)} ${getRandom(flavors)} ${getRandom(suffix)}`
   );
+  if (result.length > 32) return generateName(false);
+  else return result;
 };
 
 function capitalize(string: string): string {
